@@ -4,23 +4,15 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-
 
 public class Leitura {
-    ArrayList listaNumeros;
+    
+    public Leitura() {}
 
-    Leitura() {
-        listaNumeros = new ArrayList();
-    }
-
-    public ArrayList LeituraArquivo() throws IOException {
-
+    public char[][] LeituraArquivo() throws IOException{
 
         String linhas[] = new String[100000];
         int numLinhas = 0;
-
-        TODO: Alterar nome do arquivo que será lido
 
         Path filePath = Paths.get("lab.txt");
 
@@ -35,28 +27,21 @@ public class Leitura {
             System.err.format("Erro na leitura do arquivo: ", e);
         }
 
-        int quantElem = numLinhas * linhas[0].replaceAll(" ","").length();
-        System.out.println(quantElem);
-
-        "ArrayList linhaNumero = new ArrayList();
+        int carLin = linhas[0].replaceAll(" ","").length();
         String aux[];
+        char matriz[][] = new char[numLinhas][carLin];
+
         for (int i = 0; i < numLinhas; i++) {
             aux = linhas[i].split(" ");
-            for (int j = 0; j < aux.length; j++) {
-
-                if (linhaNumero.contains(aux[j])) {
-                    if (aux[j].indexOf("X") == -1) {
-                        linhaNumero.add(aux[j]);
-                    }
-                    continue;
-                } else {
-                    linhaNumero.add(aux[j]);
-                }
+            for (int j = 0; j < carLin; j++) {
+                matriz[i][j] = aux[j].charAt(0);
+                System.out.print(matriz[i][j]);
             }
+            System.out.print("\n");
+        }
 
-        }"
-
-        return quantElem;
+        return matriz;
+        
     }
 
 }
