@@ -1,7 +1,10 @@
-public class Vert {
+import java.util.ArrayList;
+
+public class Vert implements Comparable<Vert>{
     char nome;
-    int dist;
+    Integer dist;
     Vert pai;
+    ArrayList<Vert> adjs = new ArrayList<>();
 
     public Vert(char nome){
         this.nome = nome;
@@ -9,7 +12,7 @@ public class Vert {
         pai = null;
     }
 
-    public int getDist() {
+    public Integer getDist() {
         return dist;
     }
 
@@ -31,5 +34,10 @@ public class Vert {
 
     public void setPai(Vert pai) {
         this.pai = pai;
+    }
+
+    @Override
+    public int compareTo(Vert vert){
+        return this.getDist().compareTo(vert.getDist());
     }
 }
