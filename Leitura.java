@@ -6,15 +6,22 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Leitura {
-    
-    public Leitura() {}
 
-    public char[][] LeituraArquivo() throws IOException{
+    Vert posicao = new Vert('v');
+//
+//    public Leitura(Vert posicao) {
+//        this.posicao = posicao;
+//    }
+    Leitura(){
+
+    }
+
+    public Vert[][] LeituraArquivo() throws IOException{
 
         String linhas[] = new String[100000];
         int numLinhas = 0;
 
-        Path filePath = Paths.get("lab.txt");
+        Path filePath = Paths.get("Lab.txt");
 
         // Ler o arquivo
         try (BufferedReader reader = Files.newBufferedReader(filePath, Charset.defaultCharset())) {
@@ -27,21 +34,24 @@ public class Leitura {
             System.err.format("Erro na leitura do arquivo: ", e);
         }
 
+        //Conta caracter
         int carLin = linhas[0].replaceAll(" ","").length();
-        String aux[];
-        char matriz[][] = new char[numLinhas][carLin];
+        char aux[] = new char[carLin];
+        Vert matriz[][] = new Vert[numLinhas][carLin];
 
         for (int i = 0; i < numLinhas; i++) {
-            aux = linhas[i].split(" ");
+
             for (int j = 0; j < carLin; j++) {
-                matriz[i][j] = aux[j].charAt(0);
-                System.out.print(matriz[i][j]);
+                aux[j] = linhas[i].charAt(j);
+                matriz[i][j] = new Vert(aux[j]);
+                if(matriz[i][j].getNome() == 'C'){
+                    posicao = matriz[i][j];
+                }
+                System.out.print(matriz[i][j].getNome());
             }
             System.out.print("\n");
         }
-
         return matriz;
-        
     }
 
 }
