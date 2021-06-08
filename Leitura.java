@@ -8,15 +8,16 @@ import java.nio.file.Paths;
 public class Leitura {
 
     Vert posicao = new Vert('v');
-//
+    Vert saida = new Vert('S');
+    //
 //    public Leitura(Vert posicao) {
 //        this.posicao = posicao;
 //    }
-    Leitura(){
+    Leitura() {
 
     }
 
-    public Vert[][] LeituraArquivo() throws IOException{
+    public Vert[][] LeituraArquivo() throws IOException {
 
         String linhas[] = new String[100000];
         int numLinhas = 0;
@@ -35,23 +36,32 @@ public class Leitura {
         }
 
         //Conta caracter
-        int carLin = linhas[0].replaceAll(" ","").length();
+        int carLin = linhas[0].replaceAll(" ", "").length();
         char aux[] = new char[carLin];
         Vert matriz[][] = new Vert[numLinhas][carLin];
 
         for (int i = 0; i < numLinhas; i++) {
 
             for (int j = 0; j < carLin; j++) {
+
                 aux[j] = linhas[i].charAt(j);
                 matriz[i][j] = new Vert(aux[j]);
-                if(matriz[i][j].getNome() == 'C'){
+
+                if (matriz[i][j].getNome() == 'C') {
                     posicao = matriz[i][j];
                 }
+                if (matriz[i][j].getNome() == 'S') {
+                    saida = matriz[i][j];
+                }
+
                 System.out.print(matriz[i][j].getNome());
             }
+
             System.out.print("\n");
         }
+
         return matriz;
     }
+
 
 }
