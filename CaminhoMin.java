@@ -5,7 +5,7 @@ public class CaminhoMin{
     
     public CaminhoMin(){}
 
-    public int CaminhoMinimo(Vert[][] verts,Vert c, int saiX,int saiY,int numLinhas, int carLin){
+    public int CaminhoMinimo(Vert[][] verts,Vert c, Vert s,int numLinhas, int carLin){
         int quntMov = 0;
         
         c.setDist(0); 
@@ -15,18 +15,22 @@ public class CaminhoMin{
         for (int i = 0; i < numLinhas; i++) {
             for (int j = 0; j < carLin; j++) {
                 pq.add(verts[i][j]);
-            }
-            System.out.print("\n");
+            } 
         }
 
         while(!pq.isEmpty()){
             Vert u = pq.poll();
             explorados.add(u);
-            
+
+            for(Vert adj:u.getAdjs()){
+                if(adj.getDist() > u.getDist() + 1){
+                    adj.setDist(u.getDist() + 1);
+                    adj.setPai(u); 
+                }
+            }
         }
-
-
-        return quntMov;
+        
+        return s.getDist();
     }
 
     
