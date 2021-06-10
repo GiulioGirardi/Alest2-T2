@@ -7,8 +7,10 @@ import java.nio.file.Paths;
 
 public class Leitura {
 
-    Vert posicao = new Vert('v');
-    Vert saida = new Vert('S');
+    private Vert posicao = new Vert('v');
+    private Vert saida = new Vert('S');
+    private int numLinhas;
+    private int carLin;
     //
 //    public Leitura(Vert posicao) {
 //        this.posicao = posicao;
@@ -20,9 +22,9 @@ public class Leitura {
     public Vert[][] LeituraArquivo() throws IOException {
 
         String linhas[] = new String[100000];
-        int numLinhas = 0;
+        numLinhas = 0;
 
-        Path filePath = Paths.get("Lab.txt");
+        Path filePath = Paths.get("Alest2-t2/Lab.txt");
 
         // Ler o arquivo
         try (BufferedReader reader = Files.newBufferedReader(filePath, Charset.defaultCharset())) {
@@ -36,10 +38,9 @@ public class Leitura {
         }
 
         //Conta caracter
-        int carLin = linhas[0].replaceAll(" ", "").length();
+        carLin = linhas[0].replaceAll(" ", "").length();
         char aux[] = new char[carLin];
         Vert matriz[][] = new Vert[numLinhas][carLin];
-
         for (int i = 0; i < numLinhas; i++) {
 
             for (int j = 0; j < carLin; j++) {
@@ -63,5 +64,20 @@ public class Leitura {
         return matriz;
     }
 
+    public Vert getPosicao() {
+        return posicao;
+    }
+
+    public Vert getSaida() {
+        return saida;
+    }
+
+    public int getCarLin() {
+        return carLin;
+    }
+
+    public int getNumLinhas() {
+        return numLinhas;
+    }
 
 }

@@ -8,8 +8,9 @@ public class Vert implements Comparable<Vert>{
 
     public Vert(char nome){
         this.nome = nome;
-        dist = 2147483647;
+        dist = Integer.MAX_VALUE;
         pai = null;
+
     }
 
     public Integer getDist() {
@@ -28,6 +29,8 @@ public class Vert implements Comparable<Vert>{
         return adjs;
     }
 
+
+
     public void setDist(int dist) {
         this.dist = dist;
     }
@@ -44,8 +47,19 @@ public class Vert implements Comparable<Vert>{
         this.adjs = adjs;
     }
 
+
+
+
     @Override
     public int compareTo(Vert vert){
         return this.getDist().compareTo(vert.getDist());
     }
+
+    
+    public String toString(){
+        return " "+nome+" - "+ dist;
+
+    }
+
+
 }
